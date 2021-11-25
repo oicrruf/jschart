@@ -1,0 +1,16 @@
+body{
+  background-color: black;
+  color: white;
+}
+
+.container{
+  width: 80%;
+  margin: auto;
+}
+
+div canvas{
+  background-color: #c9c9c9;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
