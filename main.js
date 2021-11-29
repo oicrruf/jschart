@@ -1,26 +1,26 @@
-const container = document.querySelector('div.container')
+const container = document.querySelector('#charts-container')
 
-const example = [1, 2, 3]
+const drawCanvas = (charts) => {
+  charts.forEach(() => {
+    container.appendChild(document.createElement('canvas'))
+  })
+  drawChart(charts)
+};
 
-example.forEach(() => {
-  container.appendChild(document.createElement('canvas'))
-})
+const drawChart = (charts) => {
+  let allCanvas = document.querySelectorAll('#charts-container canvas')
+  allCanvas.forEach((element, i) => {
+    new Chart(element.getContext('2d'), charts[i])
+  })
+};
 
-// console.log(allCanvas)
-
-const allCanvas = document.querySelectorAll('div.container canvas')
-
-const drawChart = (element, source, i) => {
-
-  fetch(source)
+const getData = (file) => {
+  fetch(file)
     .then(response => response.json())
     .then(data => {
-      new Chart(element, data[i])
+      drawCanvas(data)
     }
     );
 }
 
-allCanvas.forEach((elem, i) => {
-
-  drawChart(elem.getContext('2d'), 'data.json', i)
-})
+getData('data.json')
